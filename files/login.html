@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="auth-wrapper">
+    <div class="auth-card fade-up">
+
+        <div class="auth-logo mb-1">
+            <span class="hex">Hexa</span><span class="mob">Mobiles</span>
+        </div>
+
+        <h2 class="auth-title">Welcome Back</h2>
+        <p class="auth-sub">Sign in to continue shopping</p>
+
+        <form method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                <input type="email" name="email" class="form-control" placeholder="name@example.com" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="btn-auth">Sign In →</button>
+
+        </form>
+
+        <div class="auth-footer">
+            New to HexaMobiles? <a href="/register">Create an account</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="checkout-card fade-up">
+
+    <div class="checkout-icon">✓</div>
+
+    <h2 class="checkout-title">Order Confirmed!</h2>
+    <p class="checkout-sub">Your order has been placed successfully.<br>Thank you for shopping with HexaMobiles.</p>
+
+    <div class="checkout-amount">
+        <div>
+            <div class="lbl">Amount Paid</div>
+            <div class="val">₹{{ total }}</div>
+        </div>
+    </div>
+
+    <a href="/products" class="btn-continue">Continue Shopping →</a>
+
+</div>
+
+{% endblock %}

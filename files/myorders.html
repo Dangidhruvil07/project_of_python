@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="padding: 24px 0;">
+
+    <h2 class="page-header">📦 My Orders</h2>
+
+    {% if orders %}
+
+    {% for order in orders %}
+    <div class="order-card fade-up">
+
+        <div class="order-header">
+            <div class="order-status">
+                <span class="dot"></span>
+                Order Confirmed
+            </div>
+            <div class="order-total">₹{{ order.total }}</div>
+        </div>
+
+        <div class="row g-3">
+            {% for item in order["items"] %}
+            <div class="col-md-3 col-sm-4 col-6">
+                <div class="order-item">
+                    <img src="{{ url_for('static', filename='images/' ~ item['image']) }}"
+                         alt="{{ item.name }}">
+                    <div class="order-item-name">{{ item.name }}</div>
+                    <div class="order-item-detail">₹{{ item.price }} × {{ item.quantity | default(1) }}</div>
+                    <div class="order-item-total">
+                        ₹{{ (item.price | int) * (item.quantity | default(1)) }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    {% endfor %}
+
+    {% else %}
+
+    <div class="empty-state">
+        <div class="empty-icon">📦</div>
+        <h3>No orders yet</h3>
+        <p>You haven't placed any orders. Start shopping!</p>
+        <a href="/products" class="btn-shop-now">Shop Now →</a>
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

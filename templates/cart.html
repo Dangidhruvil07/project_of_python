@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="padding: 24px 0;">
+
+    <h2 class="page-header">🛒 Your Cart</h2>
+
+    {% if cart_items %}
+
+    <div class="cart-table-wrap mb-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>
+                        <span style="font-weight:600; color: var(--text);">{{ item.name }}</span>
+                    </td>
+                    <td>
+                        <span style="color: var(--amber); font-weight: 700;">₹{{ item.price }}</span>
+                    </td>
+                    <td>
+                        <a href="/remove/{{ item._id }}" class="btn-remove">
+                            ✕ Remove
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Total + Checkout -->
+    <div class="cart-total-row">
+        <div>
+            <div class="cart-total-label">Order Total</div>
+            <div class="cart-total-amount"><span>₹</span>{{ total }}</div>
+        </div>
+        <a href="/checkout" class="btn-checkout">
+            Proceed to Checkout ✓
+        </a>
+    </div>
+
+    {% else %}
+
+    <div class="empty-state">
+        <div class="empty-icon">🛒</div>
+        <h3>Your cart is empty</h3>
+        <p>Looks like you haven't added anything yet.</p>
+        <a href="/products" class="btn-shop-now">Browse Products →</a>
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

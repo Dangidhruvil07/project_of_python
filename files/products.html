@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ══════════════════════════════
+     HERO SECTION
+══════════════════════════════ -->
+<div class="hero-section">
+    <div class="hero-content">
+
+        <div class="hero-badge">✦ NEW COLLECTION 2026</div>
+
+        <h1 class="hero-title">
+            Future Ready<br>
+            <span>Tech Awaits</span>
+        </h1>
+
+        <p class="hero-text">
+            Premium Smartphones, Laptops & Smart Devices — engineered for the next generation.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="/products" class="btn-hero-primary">Shop Now →</a>
+            <a href="/category/phone" class="btn-hero-outline">View Phones</a>
+        </div>
+
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="num">500+</div>
+                <div class="lbl">Products</div>
+            </div>
+            <div class="hero-stat">
+                <div class="num">50K+</div>
+                <div class="lbl">Customers</div>
+            </div>
+            <div class="hero-stat">
+                <div class="num">4.9★</div>
+                <div class="lbl">Avg Rating</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ══════════════════════════════
+     CATEGORIES
+══════════════════════════════ -->
+<div class="category-section">
+    <h3 class="section-title">Browse Categories</h3>
+    <div class="categories-wrap">
+
+        <div class="category-card" data-filter="all">
+            <a href="/products">
+                <div class="icon">📦</div>
+                <p>All</p>
+            </a>
+        </div>
+
+        <div class="category-card" data-filter="phone">
+            <a href="/category/phone">
+                <div class="icon">📲</div>
+                <p>Phones</p>
+            </a>
+        </div>
+
+        <div class="category-card" data-filter="laptop">
+            <a href="/category/laptop">
+                <div class="icon">💻</div>
+                <p>Laptops</p>
+            </a>
+        </div>
+
+        <div class="category-card" data-filter="audio">
+            <a href="/category/audio">
+                <div class="icon">🎧</div>
+                <p>Audio</p>
+            </a>
+        </div>
+
+        <div class="category-card" data-filter="accessories">
+            <a href="/category/accessories">
+                <div class="icon">⌚</div>
+                <p>Accessories</p>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<!-- ══════════════════════════════
+     PRODUCTS GRID
+══════════════════════════════ -->
+<div class="py-4 page-bottom-pad">
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash-msg">{{ messages[0] }}</div>
+    {% endif %}
+    {% endwith %}
+
+    <h3 class="products-grid-title">All Products</h3>
+
+    <div class="row g-4">
+        {% for product in products %}
+        <div class="col-md-4 col-sm-6 fade-up">
+            <div class="product-card">
+
+                <div class="img-wrapper">
+                    <img src="{{ url_for('static', filename='images/' + product.image) }}"
+                         alt="{{ product.name }}">
+                </div>
+
+                <div class="card-body">
+                    <span class="product-category-tag">{{ product.category }}</span>
+                    <h5 class="product-name">{{ product.name }}</h5>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                        <span>(1,200 reviews)</span>
+                    </div>
+
+                    <div class="price">
+                        <span class="price-symbol">₹</span>{{ product.price }}
+                    </div>
+
+                    <a href="{{ url_for('add_to_cart', id=product._id) }}" class="add-btn">
+                        + Add to Cart
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
