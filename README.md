@@ -272,12 +272,6 @@ For production:
 
 ---
 
-# 👨‍💻 Author
-
-Developed by DJ Alok 💻
-
----
-
 # ⭐ Support
 
 If you like this project:
