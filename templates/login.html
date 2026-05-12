@@ -12,27 +12,76 @@
         <h2 class="auth-title">Welcome Back</h2>
         <p class="auth-sub">Sign in to continue shopping</p>
 
+        <!-- FLASH MESSAGE -->
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+
+                {% for category, message in messages %}
+
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+        {% endwith %}
+
         <form method="POST">
 
             <div class="mb-3">
                 <label class="form-label">Email Address</label>
-                <input type="email" name="email" class="form-control" placeholder="name@example.com" required>
+
+                <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="name@example.com"
+                    required
+                >
             </div>
 
             <div class="mb-4">
                 <label class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+
+                <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="••••••••"
+                    required
+                >
             </div>
 
-            <button type="submit" class="btn-auth">Sign In →</button>
+            <button type="submit" class="btn-auth">
+                Sign In →
+            </button>
 
         </form>
 
         <div class="auth-footer">
-            New to HexaMobiles? <a href="/register">Create an account</a>
+            New to HexaMobiles?
+            <a href="/register">Create an account</a>
         </div>
 
     </div>
 </div>
+
+<!-- AUTO HIDE ALERT -->
+
+<script>
+
+setTimeout(() => {
+
+    let alerts = document.querySelectorAll(".alert");
+
+    alerts.forEach(alert => {
+        alert.style.display = "none";
+    });
+
+}, 3000);
+
+</script>
 
 {% endblock %}
